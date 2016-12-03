@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_valid.c                                      :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/03 08:12:59 by chle-van         ###   ########.fr       */
+/*   Created: 2016/12/03 07:32:53 by chle-van          #+#    #+#             */
+/*   Updated: 2016/12/03 08:22:08 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece	*ft_tetvalid(char *c)
+void	ft_ladd(t_piece *list, t_piece *add)
 {
-	int		i;
-	int		hash;
-	char	**tab;
-
-	if (!c)
-		return (NULL);
-	tab = NULL;
-	i = 0;
-	hash = 0;
-	while (i < 20)
-	{
-		if (c[i] != '#' || c[i] != '.' || c[i] != '\n' || (c[4 + (5 * i)]
-					!= '\n' && i < 4))
-			return (0);
-		if (c[i] == '#')
-			hash++;
-		i++;
-	}
-	if (hash != 4)
-		return (NULL);
-	if (c[i] == '\n' || c[i] == '\0')
-		tab = ft_strsplit(c, '\n');
-	return (ft_detect(tab));
+	if (!add)
+		return ;
+	while (list->next)
+		list = list->next;
+	list->next = add;
 }
