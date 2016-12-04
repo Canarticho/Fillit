@@ -6,12 +6,16 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 06:16:06 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/03 07:32:43 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 06:51:13 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_ecrase(char **map, )
+int	ft_tplace(char **map, int type, int size)
 {
+
 }
 
-ft_p00(char **tab, int i, int j, char c);
+int	ft_p00(char **tab, int i, int j, char c)
+{
+
+}

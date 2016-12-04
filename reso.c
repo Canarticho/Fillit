@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 03:26:01 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 05:18:40 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 06:51:12 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,8 @@ void	**ft_res(t_piece *list, char **map, int size)
 	while (tmp->next)
 	{
 		if (!tmp->place)
-			if (ft_place (list->type))
-			{
-				ft_tplace(list->type, map, size);
+			if (ft_tplace (map, list->type, size))
 				ft_res(list, map, size);
-			}
-			else
-				return ;
 		tmp = tmp_next;
 	}
 }
