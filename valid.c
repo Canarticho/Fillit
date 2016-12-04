@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 06:51:10 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 09:17:57 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ int ft_allpl(char **map, t_piece list)
 	i = 0;
 	while (list->next)
 	{
+		if (!list->place)
+			return (0);
 		list = list->next;
 		i++;
 	}
-	
+	return (1);
 }

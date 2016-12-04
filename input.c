@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 05:18:48 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 09:17:59 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ ft_fillit(char *file)
 	int		size;
 	char	**map;
 
-	size = opt_size(list)
+	size = opt_size(list);
 	list = ft_input(file);
-	while (ft_checkall(ft_res(list, map, size)), size)
+	map  = ft_newmap(size)
+	while (ft_allpl(ft_res(list, ft_newmap(size), size)), size)
 		size++;
 	ft_printmap(map, size);
 }
