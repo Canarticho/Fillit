@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/03 08:20:54 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 05:18:48 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ t_piece	*ft_input(char *file)
 	t_piece	*list;
 	t_piece	*tmp;
 	char	*buff;
+	int		i;
 
+	i = 0
 	if ((tmp = ft_tetvalid(ft_readtet(file))))
 	{
 		list = tmp;
-		while (ft_strlen(buff = ft_readtet(file)) != 20)
+		while (ft_strlen(buff = ft_readtet(file)) != 20 && i < 26)
 		{
 			if ((tmp = ft_tetvalid(buff)))
 				ft_ladd(list, tmp);
@@ -55,4 +57,17 @@ int		main(int ac, char **av)
 	{
 		ft_fillit(av[1]);
 	}
+}
+
+ft_fillit(char *file)
+{
+	t_piece	list;
+	int		size;
+	char	**map;
+
+	size = opt_size(list)
+	list = ft_input(file);
+	while (ft_checkall(ft_res(list, map, size)), size)
+		size++;
+	ft_printmap(map, size);
 }

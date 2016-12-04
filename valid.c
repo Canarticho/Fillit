@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/* ************************************************************************** *
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_is_valid.c                                      :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/03 08:12:59 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/04 05:18:51 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,37 @@ t_piece	*ft_tetvalid(char *c)
 		tab = ft_strsplit(c, '\n');
 	return (ft_detect(tab));
 }
+
+int opt_size(t_piece list)
+{
+	int i;
+	int size;
+
+	while (list => next)
+	{
+		list  = list=>next;
+		i++;
+	}
+	while (!ft_sqrt(i))
+		i++;
+	return (2 * ft_sqrt(i));
+}
+
+char **ft_newmap(int size)
+{
+	int i;
+	int j;
+
+	char **tab;
+
+	tab = (char **)malloc(sizeof(tab) * size)
+		while (i < size)
+		{
+			tab[i] = malloc(sizeof(*tab) * size);
+			ft_memset(tab[i], '.', size);
+			i++;
+		}
+	return (tab);
+}
+
+int ft_allpl()
