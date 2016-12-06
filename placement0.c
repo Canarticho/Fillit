@@ -6,9 +6,11 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 06:16:06 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/06 02:33:30 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/06 05:41:46 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 char	ft_dot(int place)
 {
@@ -26,7 +28,7 @@ char	ft_diez(int place)
 		return ('#');
 }
 
-int		ft_p00(char **tab, int i, int j, t_piece *piece)
+int		ft_p00(char **tab, int i, int j, t_piece *piece, int size)
 {
 	char t;
 	char p;
@@ -34,7 +36,7 @@ int		ft_p00(char **tab, int i, int j, t_piece *piece)
 	t = ft_dot(piece->place);
 	p = ft_diez(piece->place);
 	if (piece->type != 0)
-		return (ft_p01(tab, i, j, c, type));
+		return (ft_p01(tab, i, j, piece, size));
 	if (tab[i][j + 1] == t || tab[i][j + 2] == t || tab[i][j + 3] == t)
 	{
 		tab[i][j] = p;
@@ -43,15 +45,15 @@ int		ft_p00(char **tab, int i, int j, t_piece *piece)
 		tab[i][j + 3] = p;
 		return (1);
 	}
-	if (i + 1 < size - list->l)
-		return (p00(tab, i + 1, j, c, piece));
-	else if (j + 1 < size - list->h)
-		return (p00(tab, 0, j + 1, c, piece));
+	if (i + 1 < size - piece->l)
+		return (ft_p00(tab, i + 1, j, piece, size));
+	else if (j + 1 < size - piece->h)
+		return (ft_p00(tab, 0, j + 1, piece, size));
 	else
 		return (0);
 }
 
-int		ft_p01(char **tab, int i, int j, t_piece *piece)
+int		ft_p01(char **tab, int i, int j, t_piece *piece, int size)
 {
 	char t;
 	char p;
@@ -59,7 +61,7 @@ int		ft_p01(char **tab, int i, int j, t_piece *piece)
 	t = ft_dot(piece->place);
 	p = ft_diez(piece->place);
 	if (piece->type != 1)
-		return (ft_p02(tab, i, j, c, type));
+		return (ft_p02(tab, i, j, piece, size));
 	if (tab[i + 1][j] == t || tab[i + 2][j] == t || tab[i + 3][j] == t)
 	{
 		tab[i][j] = p;
@@ -68,15 +70,15 @@ int		ft_p01(char **tab, int i, int j, t_piece *piece)
 		tab[i + 3][j] = p;
 		return (1);
 	}
-	if (i + 1 < size - list->l)
-		return (p01(tab, i + 1, j, c, piece));
-	else if (j + 1 < size - list->h)
-		return (p01(tab, 0, j + 1, c, piece));
+	if (i + 1 < size - piece->l)
+		return (ft_p01(tab, i + 1, j, piece, size));
+	else if (j + 1 < size - piece->h)
+		return (ft_p01(tab, 0, j + 1, piece, size));
 	else
 		return (0);
 }
 
-int		ft_p02(char **tab, int i, int j, t_piece *piece)
+int		ft_p02(char **tab, int i, int j, t_piece *piece, int size)
 {
 	char t;
 	char p;
@@ -84,7 +86,7 @@ int		ft_p02(char **tab, int i, int j, t_piece *piece)
 	t = ft_dot(piece->place);
 	p = ft_diez(piece->place);
 	if (piece->type != 2)
-		return (ft_p03(tab, i, j, c, type));
+		return (ft_p03(tab, i, j, piece, size));
 	if (tab[i][j + 1] == t || tab[i + 1][j] == t || tab[i + 1][j + 1] == t)
 	{
 		tab[i][j] = p;
@@ -93,23 +95,23 @@ int		ft_p02(char **tab, int i, int j, t_piece *piece)
 		tab[i + 1][j + 1] = p;
 		return (1);
 	}
-	if (i + 1 < size - list->l)
-		return (p02(tab, i + 1, j, c, piece));
-	else if (j + 1 < size - list->h)
-		return (p02(tab, 0, j + 1, c, piece));
+	if (i + 1 < size - piece->l)
+		return (ft_p02(tab, i + 1, j, piece, size));
+	else if (j + 1 < size - piece->h)
+		return (ft_p02(tab, 0, j + 1, piece, size));
 	else
 		return (0);
 }
 
-int		ft_p03(char **tab, int i, int j, t_piece *piece)
+int		ft_p03(char **tab, int i, int j, t_piece *piece, int size)
 {
 	char t;
 	char p;
 
 	t = ft_dot(piece->place);
 	p = ft_diez(piece->place);
-	if (piece->type == 3)
-		return (ft_p04(tab, i, j, c, type));
+	if (piece->type != 3)
+		return (ft_p04(tab, i, j, piece, size));
 	if (tab[i][j + 1] == t || tab[i][j + 2] == t || tab[i + 1][j + 2] == t)
 	{
 		tab[i][j] = p;
@@ -118,10 +120,10 @@ int		ft_p03(char **tab, int i, int j, t_piece *piece)
 		tab[i + 1][j + 2] = p;
 		return (1);
 	}
-	if (i + 1 < size - list->l)
-		return (p03(tab, i + 1, j, c, piece));
-	else if (j + 1 < size - list->h)
-		return (p03(tab, 0, j + 1, c, piece));
+	if (i + 1 < size - piece->l)
+		return (ft_p03(tab, i + 1, j, piece, size));
+	else if (j + 1 < size - piece->h)
+		return (ft_p03(tab, 0, j + 1, piece, size));
 	else
 		return (0);
 }
