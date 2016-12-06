@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 09:17:59 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/06 02:11:02 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_readtet(char *file)
 {
 	int		fd;
 	char	*buff;
+
 	if (!(buff = malloc(sizeof(char *) * 22)))
 		return (NULL);
 	fd = open(file, O_RDONLY);
@@ -31,7 +32,7 @@ t_piece	*ft_input(char *file)
 	char	*buff;
 	int		i;
 
-	i = 0
+	i = 0;
 	if ((tmp = ft_tetvalid(ft_readtet(file))))
 	{
 		list = tmp;
@@ -59,16 +60,15 @@ int		main(int ac, char **av)
 	}
 }
 
-ft_fillit(char *file)
+void	ft_fillit(char *file)
 {
-	t_piece	list;
+	t_piece	*list;
 	int		size;
 	char	**map;
 
-	size = opt_size(list);
 	list = ft_input(file);
-	map  = ft_newmap(size)
-	while (ft_allpl(ft_res(list, ft_newmap(size), size)), size)
+	size = ft_opt_size(list);
+	map = ft_newmap(size);
+	while (ft_allpl(map, list, size))
 		size++;
-	ft_printmap(map, size);
 }

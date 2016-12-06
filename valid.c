@@ -1,4 +1,4 @@
-/* ************************************************************************** *
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_is_valid.c                                      :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 09:17:57 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/06 02:07:40 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ t_piece	*ft_tetvalid(char *c)
 	return (ft_detect(tab));
 }
 
-int opt_size(t_piece list)
+int		ft_opt_size(t_piece *list)
 {
-	int i;
-	int size;
+	int	i;
 
-	while (list => next)
+	i = 0;
+	while (list->next)
 	{
-		list  = list=>next;
+		list = list->next;
 		i++;
 	}
 	while (!ft_sqrt(i))
@@ -54,28 +54,33 @@ int opt_size(t_piece list)
 	return (2 * ft_sqrt(i));
 }
 
-char **ft_newmap(int size)
+char	**ft_newmap(int size)
 {
-	int i;
-	int j;
+	int		i;
+	char	**tab;
 
-	char **tab;
-
-	tab = (char **)malloc(sizeof(tab) * size)
-		while (i < size)
-		{
-			tab[i] = malloc(sizeof(*tab) * size);
-			ft_memset(tab[i], '.', size);
-			i++;
-		}
+	i = 0;
+	tab = (char **)malloc(sizeof(tab) * size);
+	while (i < size)
+	{
+		tab[i] = malloc(sizeof(*tab) * size);
+		ft_memset(tab[i], '.', size);
+		i++;
+	}
 	return (tab);
 }
 
-int ft_allpl(char **map, t_piece list)
+int		ft_allpl(char **map, t_piece *list, int size)
 {
 	int i;
+	int j;
+	int l;
+	int c;
 
+	j = 0;
 	i = 0;
+	c = -1;
+	l = -1;
 	while (list->next)
 	{
 		if (!list->place)
@@ -83,5 +88,12 @@ int ft_allpl(char **map, t_piece list)
 		list = list->next;
 		i++;
 	}
-	return (1);
+	while (++l < size)
+		while (++c < size)
+			if (map[l][c] == '#')
+				j++;
+	if (j * 4 == i)
+		return (1);
+	else
+		return (0);
 }

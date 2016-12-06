@@ -1,4 +1,4 @@
-/*) ce************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:59:16 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/04 05:34:42 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/06 02:11:00 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_piece
 }					t_piece;
 
 t_piece				*ft_tetvalid(char *c);
+t_piece				*ft_input(char *file);
 t_piece				*ft_detect(char **tab);
 t_piece				*ft_d00(char **p, char c);
 t_piece				*ft_d01(char **p, char c);
@@ -50,6 +51,11 @@ t_piece				*ft_d15(char **p, char c);
 t_piece				*ft_d16(char **p, char c);
 t_piece				*ft_d17(char **p, char c);
 t_piece				*ft_d18(char **p, char c);
+int					ft_allpl(char **map, t_piece *list, int size);
+int					ft_opt_size(t_piece *list);
+char				**ft_newmap(int size);
+int					ft_tplace(char **map, t_piece *piece, int size);
+void				ft_fillit(char *file);
 void				ft_p00(char **tab, int i, int j, char c);
 void				ft_p01(char **tab, int i, int j, char c);
 void				ft_p02(char **tab, int i, int j, char c);
