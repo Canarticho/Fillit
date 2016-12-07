@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 09:03:40 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 09:52:38 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,12 @@ t_piece	*ft_input(int fd)
 	buff = ft_readtet(fd);
 	if ((tmp = ft_tetvalid(buff)))
 	{
-		ft_putstr("tet0 valid\n");
 		list = tmp;
 		tmp = NULL;
 		while (ft_strlen(buff = ft_readtet(fd)) == 21 && i < 26)
 		{
 			if ((tmp = ft_tetvalid(buff)))
-			{
-				ft_putchar('1');
 				ft_ladd(list, tmp);
-			}
 			else
 				return (NULL);
 		}
@@ -77,17 +73,25 @@ int		main(int ac, char **av)
 void	ft_fillit(int fd)
 {
 	t_piece	*list;
-	//	int		size;
-	//	char	**map;
+	int		size;
+	char	**map;
 
 	list = ft_input(fd);
-	/*	size = ft_opt_size(list);
+	size = ft_opt_size(list);
+		ft_putstr("taille min = ");
+		ft_putstr(ft_itoa(size));
+		ft_putchar('\n');
 		map = ft_newmap(size);
-		while (ft_allpl(map, list, size))
-		size++;
+		ft_displaytab(map, size);
+		ft_res(list, map, size);
+/*		while (ft_allpl(map, list, size))
+		size++;*/
 		while (list->next)
 		{
 		ft_putstr(ft_itoa(list->type));
+		ft_putchar(' ');
 		list = list->next;
-		}*/
+		}
+		ft_putstr(ft_itoa(list->type));
+		ft_putchar('\n');
 }
