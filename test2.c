@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 08:04:16 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 08:53:23 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_piece	*ft_d09(char **p, char c)
 	i = 0;
 	j = 0;
 	ft_putstr("test type 9\n");
-	while (j < 4)
+	while (j < 2)
 	{
-		while (i < 4 && p[j][i] == c)
+		while (i < 3)
 		{
 			if (p[j][i] == c && p[j + 1][i] == c && p[j + 1][i + 1] == c &&
 					p[j + 2][i + 1] == c)
@@ -37,6 +37,7 @@ t_piece	*ft_d09(char **p, char c)
 			}
 			i++;
 		}
+		i = 0;
 		j++;
 	}
 	return (ft_d10(p, c));
@@ -48,11 +49,12 @@ t_piece	*ft_d10(char **p, char c)
 	int		j;
 	t_piece	*maillon;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	while (i < 4)
+	ft_putstr("test type 10\n");
+	while (j < 2)
 	{
-		while (j < 4 && p[i][j] == c)
+		while (i < 3)
 		{
 			if (p[j][i] == c && p[j + 1][i] == c && p[j + 1][i - 1] == c &&
 					p[j + 2][i - 1] == c)
@@ -64,9 +66,10 @@ t_piece	*ft_d10(char **p, char c)
 				maillon->next = NULL;
 				return (maillon);
 			}
-			j++;
+			i++;
 		}
-		i++;
+		i = 1;
+		j++;
 	}
 	return (ft_d11(p, c));
 }
@@ -79,6 +82,7 @@ t_piece	*ft_d11(char **p, char c)
 
 	i = 0;
 	j = 0;
+	ft_putstr("test type 11\n");
 	while (j < 4)
 	{
 		while (i < 4)
@@ -95,6 +99,7 @@ t_piece	*ft_d11(char **p, char c)
 			}
 			i++;
 		}
+		i = 0;
 		j++;
 	}
 	return (ft_d12(p, c));
@@ -108,9 +113,10 @@ t_piece	*ft_d12(char **p, char c)
 
 	i = 0;
 	j = 0;
-	while (j < 4)
+	ft_putstr("test type 12\n");
+	while (j < 2)
 	{
-		while (i < 4)
+		while (i < 3)
 		{
 			if (p[j][i] == c && p[j + 1][i] == c && p[j + 2][i] == c &&
 					p[j + 1][i + 1] == c)
@@ -124,6 +130,7 @@ t_piece	*ft_d12(char **p, char c)
 			}
 			i++;
 		}
+		i = 0;
 		j++;
 	}
 	return (ft_d13(p, c));
@@ -135,12 +142,12 @@ t_piece	*ft_d13(char **p, char c)
 	int		j;
 	t_piece	*maillon;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	ft_putstr("test type 13\n");
-	while (j < 4)
+	while (j < 3)
 	{
-		while (i < 4)
+		while (i < 3)
 		{
 			if (p[j][i] == c && p[j + 1][i] == c && p[j + 1][i + 1] == c &&
 					p[j + 1][i - 1] == c)
@@ -154,6 +161,7 @@ t_piece	*ft_d13(char **p, char c)
 			}
 			i++;
 		}
+		i = 1;
 		j++;
 	}
 	return (ft_d14(p, c));

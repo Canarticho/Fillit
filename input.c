@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 07:26:10 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 09:03:40 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_readtet(int fd)
 	if (!(buff = malloc(sizeof(char *) * 22)))
 		return (NULL);
 	if (read(fd, buff, BUFF_S + 1) >= 20)
-		{
+	{
 		ft_putstr("lu\n");
 		return (buff);
-		}
+	}
 	return (NULL);
 }
 
@@ -41,7 +41,7 @@ t_piece	*ft_input(int fd)
 		ft_putstr("tet0 valid\n");
 		list = tmp;
 		tmp = NULL;
-		while (ft_strlen(buff = ft_readtet(fd)) != 20 && i < 26)
+		while (ft_strlen(buff = ft_readtet(fd)) == 21 && i < 26)
 		{
 			if ((tmp = ft_tetvalid(buff)))
 			{
@@ -51,8 +51,11 @@ t_piece	*ft_input(int fd)
 			else
 				return (NULL);
 		}
-		ft_ladd(list, tmp);
-		return (list);
+		if (ft_strlen(buff) == 20 && ( tmp = ft_tetvalid(buff)))
+		{
+			ft_ladd(list, tmp);
+			return (list);
+		}
 	}
 	return (NULL);
 }
@@ -82,9 +85,9 @@ void	ft_fillit(int fd)
 		map = ft_newmap(size);
 		while (ft_allpl(map, list, size))
 		size++;
-	while (list->next)
-	{
+		while (list->next)
+		{
 		ft_putstr(ft_itoa(list->type));
 		list = list->next;
-	}*/
+		}*/
 }
