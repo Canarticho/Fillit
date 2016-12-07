@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/06 02:07:40 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 04:56:36 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,27 @@ t_piece	*ft_tetvalid(char *c)
 	tab = NULL;
 	i = 0;
 	hash = 0;
+	ft_putstr("tetvalid :\n");
+	ft_putstr(c);
 	while (i < 20)
 	{
-		if (c[i] != '#' || c[i] != '.' || c[i] != '\n' || (c[4 + (5 * i)]
-					!= '\n' && i < 4))
+		if (c[i] != '#' && c[i] != '.' && (c[4  + (i * 5)] != '\n' && i < 4))
+		{
+			printf("bug i = %d",i);
 			return (0);
+		}
 		if (c[i] == '#')
 			hash++;
 		i++;
 	}
+	ft_putstr("format valide\n");
 	if (hash != 4)
 		return (NULL);
 	if (c[i] == '\n' || c[i] == '\0')
+	{
 		tab = ft_strsplit(c, '\n');
+		ft_putstr("4# ok\n");
+	}
 	return (ft_detect(tab));
 }
 

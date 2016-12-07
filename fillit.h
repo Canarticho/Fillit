@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:59:16 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/06 05:56:20 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 07:23:24 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "libft.h"
+# include <stdio.h>
 # define BUFF_S 20
 
 typedef struct		s_piece
@@ -30,7 +31,7 @@ typedef struct		s_piece
 }					t_piece;
 
 t_piece				*ft_tetvalid(char *c);
-t_piece				*ft_input(char *file);
+t_piece				*ft_input(int fd);
 t_piece				*ft_detect(char **tab);
 t_piece				*ft_d00(char **p, char c);
 t_piece				*ft_d01(char **p, char c);
@@ -57,7 +58,7 @@ int					ft_tplace(char **map, t_piece *piece, int size);
 char				**ft_newmap(int size);
 char				ft_dot(int place);
 char				ft_diez(int place);
-void				ft_fillit(char *file);
+void				ft_fillit(int fd);
 int					ft_p00(char **tab, int i, int j, t_piece *piece, int c);
 int					ft_p01(char **tab, int i, int j, t_piece *piece, int c);
 int					ft_p02(char **tab, int i, int j, t_piece *piece, int c);
@@ -78,5 +79,5 @@ int					ft_p16(char **tab, int i, int j, t_piece *piece, int c);
 int					ft_p17(char **tab, int i, int j, t_piece *piece, int c);
 int					ft_p18(char **tab, int i, int j, t_piece *piece, int c);
 void				ft_ladd(t_piece *list, t_piece *add);
-void				ft_fillit (char *file);
+void				ft_displaytab(char **tab, int size);
 #endif

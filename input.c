@@ -6,40 +6,48 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/06 02:11:02 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/07 07:26:10 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_readtet(char *file)
+char	*ft_readtet(int fd)
 {
-	int		fd;
 	char	*buff;
 
 	if (!(buff = malloc(sizeof(char *) * 22)))
 		return (NULL);
-	fd = open(file, O_RDONLY);
 	if (read(fd, buff, BUFF_S + 1) >= 20)
+		{
+		ft_putstr("lu\n");
 		return (buff);
+		}
 	return (NULL);
 }
 
-t_piece	*ft_input(char *file)
+t_piece	*ft_input(int fd)
 {
 	t_piece	*list;
 	t_piece	*tmp;
 	char	*buff;
 	int		i;
 
+	tmp = NULL;
 	i = 0;
-	if ((tmp = ft_tetvalid(ft_readtet(file))))
+	buff = ft_readtet(fd);
+	if ((tmp = ft_tetvalid(buff)))
 	{
+		ft_putstr("tet0 valid\n");
 		list = tmp;
-		while (ft_strlen(buff = ft_readtet(file)) != 20 && i < 26)
+		tmp = NULL;
+		while (ft_strlen(buff = ft_readtet(fd)) != 20 && i < 26)
 		{
 			if ((tmp = ft_tetvalid(buff)))
+			{
+				ft_putchar('1');
 				ft_ladd(list, tmp);
+			}
 			else
 				return (NULL);
 		}
@@ -51,24 +59,32 @@ t_piece	*ft_input(char *file)
 
 int		main(int ac, char **av)
 {
+	int fd;
+
 	if (ac != 2)
 	{
 	}
 	if (ac == 2)
 	{
-		ft_fillit(av[1]);
+		fd = open(av[1], O_RDONLY);
+		ft_fillit(fd);
 	}
 }
 
-void	ft_fillit(char *file)
+void	ft_fillit(int fd)
 {
 	t_piece	*list;
-	int		size;
-	char	**map;
+	//	int		size;
+	//	char	**map;
 
-	list = ft_input(file);
-	size = ft_opt_size(list);
-	map = ft_newmap(size);
-	while (ft_allpl(map, list, size))
+	list = ft_input(fd);
+	/*	size = ft_opt_size(list);
+		map = ft_newmap(size);
+		while (ft_allpl(map, list, size))
 		size++;
+	while (list->next)
+	{
+		ft_putstr(ft_itoa(list->type));
+		list = list->next;
+	}*/
 }
