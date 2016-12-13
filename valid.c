@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 09:44:11 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/12 04:46:33 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,14 @@ char	**ft_newmap(int size)
 	return (tab);
 }
 
-int		ft_allpl(char **map, t_piece *list, int size)
+int		ft_allpl(t_piece *list)
 {
-	int i;
-	int j;
-	int l;
-	int c;
 
-	j = 0;
-	i = 0;
-	c = -1;
-	l = -1;
-	while (list->next)
+	while (list)
 	{
 		if (!list->place)
 			return (0);
 		list = list->next;
-		i++;
 	}
-	while (++l < size)
-		while (++c < size)
-			if (map[l][c] == '#')
-				j++;
-	if (j * 4 == i)
 		return (1);
-	else
-		return (0);
 }

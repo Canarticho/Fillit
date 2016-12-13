@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 09:22:28 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/13 07:08:06 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_piece	*ft_d00(char **p, char c)
 			return (maillon);
 		}
 		i++;
+		j = 0;
 	}
 	return (ft_d01(p, c));
 }
@@ -76,6 +77,7 @@ t_piece	*ft_d01(char **p, char c)
 			return (maillon);
 		}
 		i++;
+		j = 0;
 	}
 	return (ft_d02(p, c));
 }

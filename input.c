@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 09:52:38 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/12 06:55:29 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,32 @@ int		main(int ac, char **av)
 void	ft_fillit(int fd)
 {
 	t_piece	*list;
+	t_piece *tmp;
 	int		size;
 	char	**map;
 
+	map = NULL;
 	list = ft_input(fd);
 	size = ft_opt_size(list);
-		ft_putstr("taille min = ");
-		ft_putstr(ft_itoa(size));
-		ft_putchar('\n');
+	ft_putstr("taille min = ");
+	ft_putstr(ft_itoa(size));
+	ft_putchar('\n');
+	while (1)
+	{
 		map = ft_newmap(size);
-		ft_displaytab(map, size);
 		ft_res(list, map, size);
-/*		while (ft_allpl(map, list, size))
-		size++;*/
-		while (list->next)
+		if (!ft_allpl(list))
 		{
-		ft_putstr(ft_itoa(list->type));
-		ft_putchar(' ');
-		list = list->next;
+			tmp = list;
+			size++;
+				ft_putstr("RAZ/n");
+			while (tmp)
+			{
+				tmp->place = 0;
+				tmp = tmp->next;
+			}
 		}
-		ft_putstr(ft_itoa(list->type));
-		ft_putchar('\n');
+		else
+			return ;
+	}
 }

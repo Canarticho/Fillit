@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:59:16 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 09:54:56 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/13 04:44:25 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_piece
 	int				place;
 	int				l;
 	int				h;
+	char			letter;
 	struct s_piece	*next;
 }					t_piece;
 
@@ -52,7 +53,7 @@ t_piece				*ft_d15(char **p, char c);
 t_piece				*ft_d16(char **p, char c);
 t_piece				*ft_d17(char **p, char c);
 t_piece				*ft_d18(char **p, char c);
-int					ft_allpl(char **map, t_piece *list, int size);
+int					ft_allpl(t_piece *list);
 int					ft_opt_size(t_piece *list);
 int					ft_tplace(char **map, t_piece *piece, int size);
 char				**ft_newmap(int size);
@@ -80,5 +81,5 @@ int					ft_p17(char **tab, int i, int j, t_piece *piece, int c);
 int					ft_p18(char **tab, int i, int j, t_piece *piece, int c);
 void				ft_ladd(t_piece *list, t_piece *add);
 void				ft_displaytab(char **tab, int size);
-void				ft_res(t_piece *list, char **map, int size);
+int					ft_res(t_piece *list, char **map, int size);
 #endif

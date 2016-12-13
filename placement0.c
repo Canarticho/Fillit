@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 06:16:06 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/07 10:36:44 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/13 07:04:07 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,14 @@ int		ft_p00(char **tab, int i, int j, t_piece *piece, int size)
 {
 	char t;
 	char p;
-	i = 0;
-	j = 0;
-//	t = ft_dot(piece->place);
-	t = '#';
+	t = ft_diez(piece->place);
 	ft_displaytab(tab, size);
-	p = ft_diez(piece->place);
+		p = ft_dot(piece->place);
 	if (piece->type != 0)
 		return (ft_p01(tab, i, j, piece, size));
-	ft_putstr("test p0 :");
-	while (j < size - piece->h)
+	while (j <= size - piece->l)
 	{
-		while (i < piece->l)
+		while (i <= size - piece->h)
 		{
 			if (tab[i][j] == t && tab[i + 1][j] == t && tab[i + 2][j] == t && tab[i + 3][j] == t)
 			{
@@ -59,18 +55,7 @@ int		ft_p00(char **tab, int i, int j, t_piece *piece, int size)
 		j++;
 		i = 0;
 	}
-	/*	if (j + 1 < size - piece->l)
-		{
-		ft_putstr("j++\n");
-		return (ft_p00(tab, i, j + 1, piece, size));
-		}
-		else if (i + 1 < size - piece->h)
-		{
-		ft_putstr("i++\n");
-		return (ft_p00(tab, i + 1, 0, piece, size));
-		}
-		else*/
-		return (0);
+	return (0);
 }
 
 int		ft_p01(char **tab, int i, int j, t_piece *piece, int size)
@@ -78,23 +63,27 @@ int		ft_p01(char **tab, int i, int j, t_piece *piece, int size)
 	char t;
 	char p;
 
-	t = ft_dot(piece->place);
-	p = ft_diez(piece->place);
+	t = ft_diez(piece->place);
+	p = ft_dot(piece->place);
 	if (piece->type != 1)
 		return (ft_p02(tab, i, j, piece, size));
-	if (tab[i + 1][j] == t || tab[i + 2][j] == t || tab[i + 3][j] == t)
+	while (j <= size - piece->l)
 	{
-		tab[i][j] = p;
-		tab[i][j + 1] = p;
-		tab[i][j + 2] = p;
-		tab[i][j + 3] = p;
-		return (1);
+		while (i <= size - piece->h)
+		{
+			if (tab[i][j] == t && tab[i][j + 1] == t && tab[i][j + 2] == t && tab[i][j + 3] == t)
+			{
+				tab[i][j] = p;
+				tab[i][j + 1] = p;
+				tab[i][j + 2] = p;
+				tab[i][j + 3] = p;
+				return (1);
+			}
+			i++;
+		}
+		j++;
+		i = 0;
 	}
-	if (i + 1 < size - piece->l)
-		return (ft_p01(tab, i + 1, j, piece, size));
-	else if (j + 1 < size - piece->h)
-		return (ft_p01(tab, 0, j + 1, piece, size));
-	else
 		return (0);
 }
 
@@ -103,23 +92,27 @@ int		ft_p02(char **tab, int i, int j, t_piece *piece, int size)
 	char t;
 	char p;
 
-	t = ft_dot(piece->place);
-	p = ft_diez(piece->place);
+	t = ft_diez(piece->place);
+	p = ft_dot(piece->place);
 	if (piece->type != 2)
 		return (ft_p03(tab, i, j, piece, size));
-	if (tab[i][j + 1] == t || tab[i + 1][j] == t || tab[i + 1][j + 1] == t)
+	while (j <= size - piece->l)
 	{
-		tab[i][j] = p;
-		tab[i][j + 1] = p;
-		tab[i + 1][j] = p;
-		tab[i + 1][j + 1] = p;
-		return (1);
+		while (i <= size - piece->h)
+		{
+			if (tab[i][j] == t && tab[i][j + 1] == t && tab[i + 1][j] == t && tab[i + 1][j + 1] == t)
+			{
+				tab[i][j] = p;
+				tab[i][j + 1] = p;
+				tab[i + 1][j] = p;
+				tab[i + 1][j + 1] = p;
+				return (1);
+			}
+			i++;
+		}
+		j++;
+		i = 0;
 	}
-	if (i + 1 < size - piece->l)
-		return (ft_p02(tab, i + 1, j, piece, size));
-	else if (j + 1 < size - piece->h)
-		return (ft_p02(tab, 0, j + 1, piece, size));
-	else
 		return (0);
 }
 
@@ -128,22 +121,26 @@ int		ft_p03(char **tab, int i, int j, t_piece *piece, int size)
 	char t;
 	char p;
 
-	t = ft_dot(piece->place);
-	p = ft_diez(piece->place);
+	t = ft_diez(piece->place);	
+	p = ft_dot(piece->place);
 	if (piece->type != 3)
 		return (ft_p04(tab, i, j, piece, size));
-	if (tab[i][j + 1] == t || tab[i][j + 2] == t || tab[i + 1][j + 2] == t)
+	while (j <= size - piece->l)
 	{
-		tab[i][j] = p;
-		tab[i][j + 1] = p;
-		tab[i][j + 2] = p;
-		tab[i + 1][j + 2] = p;
-		return (1);
+		while (i <= size - piece->h)
+		{
+			if (tab[i][j] == t && tab[i][j + 1] == t && tab[i][j + 2] == t && tab[i + 1][j + 2] == t)
+			{
+				tab[i][j] = p;
+				tab[i][j + 1] = p;
+				tab[i][j + 2] = p;
+				tab[i + 1][j + 2] = p;
+				return (1);
+			}
+			i++;
+		}
+		j++;
+		i = 0;
 	}
-	if (i + 1 < size - piece->l)
-		return (ft_p03(tab, i + 1, j, piece, size));
-	else if (j + 1 < size - piece->h)
-		return (ft_p03(tab, 0, j + 1, piece, size));
-	else
-		return (0);
+	return (0);
 }
