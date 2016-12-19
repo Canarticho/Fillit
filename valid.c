@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/16 05:10:36 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/19 03:45:14 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,22 @@ t_piece	*ft_tetvalid(char *c)
 	int		hash;
 	char	**tab;
 
-	if (!c)
-		return (NULL);
 	tab = NULL;
 	i = 0;
 	hash = 0;
-	while (i < 20 && c[i])
+	while (i < 20 && c[i] && c)
 	{
-		if ((c[i] != '#' && c[i] != '.' && c[i] != '\n') || (c[4 + (i * 5)]
-					!= '\n' && i < 4))
+		if ((c[i] != '#' && c[i] != '.' && c[i] != '\n') ||
+				(c[4 + (i * 5)] != '\n' && i < 3))
 			return (NULL);
 		if (c[i] == '#')
 			hash++;
 		i++;
 	}
-	if (hash != 4)
+	if (hash != 4 || i != 20 || !(c[i] == '\n' || c[i] == '\0'))
 		return (NULL);
-	if (c[i] == '\n' || c[i] == '\0')
-	{
-		tab = ft_strsplit(c, '\n');
-		return (ft_detect(tab));
-	}
-	return (NULL);
+	tab = ft_strsplit(c, '\n');
+	return (ft_detect(tab));
 }
 
 int		ft_opt_size(t_piece *list)
@@ -76,7 +70,6 @@ char	**ft_newmap(int size)
 
 int		ft_allpl(t_piece *list)
 {
-
 	while (list)
 	{
 		if (!list->place)
@@ -89,7 +82,7 @@ int		ft_allpl(t_piece *list)
 void	ft_listletter(t_piece *list)
 {
 	t_piece	*tmp;
-	int 	i;
+	int		i;
 
 	i = 0;
 	tmp = list;

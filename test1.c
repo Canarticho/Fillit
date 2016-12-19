@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/16 05:23:06 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/18 03:32:36 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_piece	*ft_d04(char **p, char c)
 				maillon->type = 4;
 				maillon->l = 1;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			i++;
@@ -61,7 +60,6 @@ t_piece	*ft_d05(char **p, char c)
 				maillon->type = 5;
 				maillon->l = 3;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			j++;
@@ -91,10 +89,9 @@ t_piece	*ft_d06(char **p, char c)
 				maillon->type = 6;
 				maillon->l = 3;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
-		i++;
+			i++;
 		}
 		j++;
 	}
@@ -120,7 +117,6 @@ t_piece	*ft_d07(char **p, char c)
 				maillon->type = 7;
 				maillon->l = 2;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			i++;
@@ -150,7 +146,6 @@ t_piece	*ft_d08(char **p, char c)
 				maillon->type = 8;
 				maillon->l = 3;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			i++;

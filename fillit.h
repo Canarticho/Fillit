@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:59:16 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/16 04:24:00 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/19 03:46:55 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# include "libft.h"
 # include <stdio.h>
-# define BUFF_S 20
+# include <stdlib.h>
+# include "libft.h"
+# define BUFF_S 21
 
 typedef struct		s_piece
 {
@@ -30,6 +31,20 @@ typedef struct		s_piece
 	char			letter;
 	struct s_piece	*next;
 }					t_piece;
+
+typedef struct		s_map
+{
+	int				i;
+	int				j;
+	t_piece			*tmp;
+}					t_map;
+
+typedef struct		s_tet
+{
+	char			*buff;
+	char			size;
+	int				i;
+}					t_tet;
 
 t_piece				*ft_tetvalid(char *c);
 t_piece				*ft_input(int fd);
@@ -55,32 +70,35 @@ t_piece				*ft_d17(char **p, char c);
 t_piece				*ft_d18(char **p, char c);
 int					ft_allpl(t_piece *list);
 int					ft_opt_size(t_piece *list);
-int					ft_tplace(char **map, t_piece *piece, int size, int i, int j);
+int					ft_tplace(char **map, t_piece *piece, int i, int j);
 char				**ft_newmap(int size);
 char				ft_dot(t_piece *piece);
 char				ft_diez(t_piece *piece);
 void				ft_fillit(int fd);
-int					ft_p00(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p01(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p02(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p03(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p04(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p05(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p06(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p07(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p08(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p09(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p10(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p11(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p12(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p13(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p14(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p15(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p16(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p17(char **tab, int i, int j, t_piece *piece, int c);
-int					ft_p18(char **tab, int i, int j, t_piece *piece, int c);
-void				ft_ladd(t_piece *list, t_piece *add);
+int					ft_p00(char **tab, int i, int j, t_piece *piece);
+int					ft_p01(char **tab, int i, int j, t_piece *piece);
+int					ft_p02(char **tab, int i, int j, t_piece *piece);
+int					ft_p03(char **tab, int i, int j, t_piece *piece);
+int					ft_p04(char **tab, int i, int j, t_piece *piece);
+int					ft_p05(char **tab, int i, int j, t_piece *piece);
+int					ft_p06(char **tab, int i, int j, t_piece *piece);
+int					ft_p07(char **tab, int i, int j, t_piece *piece);
+int					ft_p08(char **tab, int i, int j, t_piece *piece);
+int					ft_p09(char **tab, int i, int j, t_piece *piece);
+int					ft_p10(char **tab, int i, int j, t_piece *piece);
+int					ft_p11(char **tab, int i, int j, t_piece *piece);
+int					ft_p12(char **tab, int i, int j, t_piece *piece);
+int					ft_p13(char **tab, int i, int j, t_piece *piece);
+int					ft_p14(char **tab, int i, int j, t_piece *piece);
+int					ft_p15(char **tab, int i, int j, t_piece *piece);
+int					ft_p16(char **tab, int i, int j, t_piece *piece);
+int					ft_p17(char **tab, int i, int j, t_piece *piece);
+int					ft_p18(char **tab, int i, int j, t_piece *piece);
+t_piece				*ft_ladd(t_piece *list, t_piece *add);
 void				ft_displaytab(char **tab, int size);
 void				ft_listletter(t_piece *piece);
-int					ft_res(t_piece *list, char **map, int size, int i, int j);
+void				ft_listdel(t_piece *list);
+void				ft_list_raz(t_piece *list);
+int					ft_res(t_piece *list, char **map, int size, t_map dcoord);
+int					ft_res2(t_piece *list, char **map, int size);
 #endif

@@ -6,50 +6,47 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 03:58:26 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/16 05:38:43 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/19 03:47:52 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_readtet(int fd)
+t_tet	ft_readtet(int fd)
 {
-	char	*buff;
+	t_tet	tetri;
 
-	if (!(buff = malloc(sizeof(char *) * 22)))
-		return (NULL);
-	if (read(fd, buff, BUFF_S + 1) >= 20)
-		return (buff);
-	return (NULL);
+	tetri.buff = malloc(sizeof(char *) * BUFF_S + 1);
+	tetri.size = read(fd, tetri.buff, BUFF_S);
+	tetri.buff[BUFF_S] = '\0';
+	return (tetri);
 }
 
 t_piece	*ft_input(int fd)
 {
 	t_piece	*list;
 	t_piece	*tmp;
-	char	*buff;
-	int		i;
+	t_tet	tetri;
 
+	tetri.i = 0;
 	tmp = NULL;
-	i = 0;
-	buff = ft_readtet(fd);
-	if ((tmp = ft_tetvalid(buff)))
+	list = NULL;
+	tetri = ft_readtet(fd);
+	while (tetri.size >= 20 && tetri.i < 25 && (tmp = ft_tetvalid(tetri.buff)))
 	{
-		list = tmp;
-		tmp = NULL;
-		while (ft_strlen(buff = ft_readtet(fd)) == 21 && i < 26)
+		if (tetri.size == 21)
+			list = ft_ladd(list, tmp);
+		else if (tetri.size == 20)
 		{
-			if ((tmp = ft_tetvalid(buff)))
-				ft_ladd(list, tmp);
-			else
-				return (NULL);
-			i++;
-		}
-		if (ft_strlen(buff) == 20)
-		{
-			ft_ladd(list,ft_tetvalid(buff));
+			free(tetri.buff);
+			list = ft_ladd(list, tmp);
 			return (list);
 		}
+		else
+			return (NULL);
+		free(tetri.buff);
+		tetri = ft_readtet(fd);
+		tetri.i++;
 	}
 	return (NULL);
 }
@@ -59,54 +56,43 @@ int		main(int ac, char **av)
 	int fd;
 
 	if (ac != 2)
+		ft_putstr("usage : ./fillit source_file\n");
+	else
 	{
-	}
-	if (ac == 2)
-	{
-		fd = open(av[1], O_RDONLY);
+		if (!(fd = open(av[1], O_RDONLY)))
+		{
+			ft_putstr("error\n");
+			return (0);
+		}
 		ft_fillit(fd);
 	}
+	return (0);
 }
 
 void	ft_fillit(int fd)
 {
 	t_piece	*list;
-	t_piece *tmp;
 	int		size;
 	char	**map;
 
-	map = NULL;
-	list = ft_input(fd);
-	size = ft_opt_size(list);
-	//	ft_putstr("taille min = ");
-	//	ft_putstr(ft_itoa(size));
-	//	ft_putchar('\n');
-	ft_listletter(list);
-	while (list)
+	if (!(list = ft_input(fd)))
 	{
-		ft_putnbr(list->type);
-	list = list->next;
+		ft_putstr("error\n");
+		return ;
 	}
-	return ;
+	size = ft_opt_size(list);
+	ft_listletter(list);
 	while (1)
-	{
-		map = ft_newmap(size);
-		ft_res(list, map, size, 0, 0);
-		if (!ft_allpl(list))
+		if (!ft_res2(list, (map = ft_newmap(size)), size))
 		{
 			free(map);
-			tmp = list;
 			size++;
-			while (tmp)
-			{
-				tmp->place = 0;
-				tmp = tmp->next;
-			}
+			ft_list_raz(list);
 		}
 		else
 		{
 			ft_displaytab(map, size);
+			ft_listdel(list);
 			return ;
 		}
-	}
 }

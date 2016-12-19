@@ -6,7 +6,7 @@
 /*   By: chle-van <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:58:11 by chle-van          #+#    #+#             */
-/*   Updated: 2016/12/16 05:23:41 by chle-van         ###   ########.fr       */
+/*   Updated: 2016/12/19 03:45:23 by chle-van         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ t_piece	*ft_detect(char **tab)
 {
 	t_piece	*res;
 
-	res = ft_d00(tab, '#');
-	res->place = 0;
+	res = NULL;
+	if ((res = ft_d00(tab, '#')))
+	{
+		res->place = 0;
+		res->next = NULL;
+	}
 	return (res);
 }
 
@@ -29,7 +33,6 @@ t_piece	*ft_d00(char **p, char c)
 
 	i = 0;
 	j = 0;
-
 	while (i < 4)
 	{
 		while (j < 4 && p[j][i] == c)
@@ -40,7 +43,6 @@ t_piece	*ft_d00(char **p, char c)
 			maillon->type = 0;
 			maillon->l = 1;
 			maillon->h = 4;
-			maillon->next = NULL;
 			return (maillon);
 		}
 		i++;
@@ -68,7 +70,6 @@ t_piece	*ft_d01(char **p, char c)
 			maillon->type = 1;
 			maillon->l = 4;
 			maillon->h = 1;
-			maillon->next = NULL;
 			return (maillon);
 		}
 		i++;
@@ -96,7 +97,6 @@ t_piece	*ft_d02(char **p, char c)
 				maillon->type = 2;
 				maillon->l = 2;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			i++;
@@ -126,7 +126,6 @@ t_piece	*ft_d03(char **p, char c)
 				maillon->type = 3;
 				maillon->l = 3;
 				maillon->h = 2;
-				maillon->next = NULL;
 				return (maillon);
 			}
 			i++;
